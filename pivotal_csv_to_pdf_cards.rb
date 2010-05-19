@@ -98,10 +98,12 @@ Prawn::Document.generate("#{outfile}.pdf",
         pdf.stroke_bounds
 
         # --- Write content
-        pdf.bounding_box [pdf.bounds.left+padding, pdf.bounds.top-padding], :width => cell.width-padding do
+        pdf.bounding_box [pdf.bounds.left+padding, pdf.bounds.top-padding], :width => cell.width-padding*2 do
           pdf.text card.title, :size => 14
           pdf.text "\n", :size => 14
-          pdf.text card.body,  :size => 10
+          pdf.fill_color "444444"
+          pdf.text card.body, :size => 10
+          pdf.fill_color "000000"
         end
 
         pdf.text_box "Points: " + card.points,
@@ -109,7 +111,9 @@ Prawn::Document.generate("#{outfile}.pdf",
         pdf.text_box "Owner: " + card.owner,
           :size => 8, :at => [12, 18], :width => cell.width-18
 
+        pdf.fill_color "999999"
         pdf.text_box card.type.capitalize,  :size => 8,  :align => :right, :at => [12, 18], :width => cell.width-18
+        pdf.fill_color "000000"
 
       end
 
