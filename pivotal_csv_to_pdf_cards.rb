@@ -5,6 +5,8 @@
 
 # Inspired by Bryan Helmkamp's http://github.com/brynary/features2cards/
 
+# Example output: http://img.skitch.com/20100519-ed932f2dgajckfg66dpkwr74jf.png
+
 require 'rubygems'
 require 'fastercsv'
 require 'ostruct'
