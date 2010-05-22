@@ -5,7 +5,7 @@
 
 # Inspired by Bryan Helmkamp's http://github.com/brynary/features2cards/
 
-# Example output: http://img.skitch.com/20100519-ed932f2dgajckfg66dpkwr74jf.png
+# Example output: http://img.skitch.com/20100522-d1kkhfu6yub7gpye97ikfuubi2.png
 
 require 'rubygems'
 require 'fastercsv'
