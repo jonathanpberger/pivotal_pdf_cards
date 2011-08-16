@@ -23,6 +23,8 @@ unless file
   exit 1
 end
 
+label_filter = ARGV[1]
+
 # --- Read the CSV file -------------------------------------------------------
 
 stories = FasterCSV.read(file)
@@ -45,11 +47,14 @@ cards = stories.map do |story|
   attrs =  { :title  => story[1]   || '',
              :body   => story[14]  || '',
              :type   => story[6]   || '',
+             :labels => story[2] || '',
              :points => story[7]   || '...',
              :owner  => story[13]  || '.'*50}
 
   Card.new attrs
 end
+
+cards.reject! { |card| !card.labels.include?(label_filter) } if label_filter
 
 # p cards
 
@@ -97,6 +102,7 @@ Prawn::Document.generate("#{outfile}.pdf",
         pdf.stroke_color = "666666"
         pdf.stroke_bounds
 
+        pdf.text card.labels, :size => 12
         # --- Write content
         pdf.bounding_box [pdf.bounds.left+padding, pdf.bounds.top-padding], :width => cell.width-padding*2 do
           pdf.text card.title, :size => 14
